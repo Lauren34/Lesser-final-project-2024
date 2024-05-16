@@ -16,7 +16,7 @@ public class RijksServiceTest {
         RijksService service = new RijksServiceFactory().getService();
 
         // when
-        CollectionResponse response = service.pageNumber(1, apiKey.get()).blockingGet();
+        CollectionResponse response = service.pageNumber(1, keyString).blockingGet();
 
         // then
         assertNotNull(response);
@@ -34,7 +34,7 @@ public class RijksServiceTest {
         RijksService service = new RijksServiceFactory().getService();
 
         // when
-        CollectionResponse response = service.searchCollection("Rembrandt", 1, apiKey.get()).blockingGet();
+        CollectionResponse response = service.searchCollection("Rembrandt", 1, keyString).blockingGet();
 
         // then
         assertNotNull(response);
@@ -52,7 +52,7 @@ public class RijksServiceTest {
         RijksService service = new RijksServiceFactory().getService();
 
         // when
-        CollectionResponse response = service.searchByArtist("Johannes Vermeer", 1, apiKey.get()).blockingGet();
+        CollectionResponse response = service.searchByArtist("Johannes Vermeer", 1, keyString).blockingGet();
 
         // then
         assertNotNull(response);
