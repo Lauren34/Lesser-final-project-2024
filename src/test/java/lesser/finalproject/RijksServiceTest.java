@@ -1,6 +1,6 @@
 package lesser.finalproject;
 
-import lesser.finalproject.Json.CollectionResponse;
+import lesser.finalproject.json.CollectionResponse;
 import com.andrewoid.ApiKey;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class RijksServiceTest {
 
     @Test
-    public void PageNumber() {
+    public void pageNumber() {
         // given
         ApiKey apiKey = new ApiKey();
         String keyString = apiKey.get();
@@ -23,7 +23,7 @@ public class RijksServiceTest {
     }
 
     @Test
-    public void SearchCollection() {
+    public void searchCollection() {
         // given
         ApiKey apiKey = new ApiKey();
         String keyString = apiKey.get();
@@ -38,7 +38,7 @@ public class RijksServiceTest {
     }
 
     @Test
-    public void SearchByArtist() {
+    public void searchByArtist() {
         // given
         ApiKey apiKey = new ApiKey();
         String keyString = apiKey.get();

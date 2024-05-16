@@ -1,6 +1,6 @@
 package lesser.finalproject;
 
-import lesser.finalproject.Json.CollectionResponse;
+import lesser.finalproject.json.CollectionResponse;
 import io.reactivex.rxjava3.core.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

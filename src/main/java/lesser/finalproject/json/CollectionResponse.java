@@ -1,4 +1,4 @@
-package lesser.finalproject.Json;
+package lesser.finalproject.json;
 
 public class CollectionResponse {
     public ArtObject[] artObjects;
