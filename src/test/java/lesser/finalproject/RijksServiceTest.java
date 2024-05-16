@@ -1,15 +1,14 @@
-package Lesser.finalproject;
+package lesser.finalproject;
 
-import Lesser.finalproject.Json.CollectionResponse;
+import lesser.finalproject.Json.CollectionResponse;
 import com.andrewoid.ApiKey;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RijksServiceTest {
 
     @Test
-    public void testPageNumber() {
+    public void PageNumber() {
         // given
         ApiKey apiKey = new ApiKey();
         String keyString = apiKey.get();
@@ -24,9 +23,10 @@ public class RijksServiceTest {
     }
 
     @Test
-    public void testSearchCollection() {
+    public void SearchCollection() {
         // given
         ApiKey apiKey = new ApiKey();
+        String keyString = apiKey.get();
         RijksService service = new RijksServiceFactory().getService();
 
         // when
@@ -38,9 +38,10 @@ public class RijksServiceTest {
     }
 
     @Test
-    public void testSearchByArtist() {
+    public void SearchByArtist() {
         // given
         ApiKey apiKey = new ApiKey();
+        String keyString = apiKey.get();
         RijksService service = new RijksServiceFactory().getService();
 
         // when
@@ -51,3 +52,4 @@ public class RijksServiceTest {
         assertNotNull(response.artObjects[0]);
     }
 }
+

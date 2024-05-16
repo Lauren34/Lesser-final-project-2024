@@ -1,4 +1,4 @@
-package Lesser.finalproject.Json;
+package lesser.finalproject.Json;
 
 public class WebImage {
     public String url;

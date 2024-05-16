@@ -1,6 +1,6 @@
-package Lesser.finalproject;
+package lesser.finalproject;
 
-import Lesser.finalproject.Json.CollectionResponse;
+import lesser.finalproject.Json.CollectionResponse;
 import io.reactivex.rxjava3.core.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -29,5 +29,3 @@ public interface RijksService {
     );
 
 }
-
-
