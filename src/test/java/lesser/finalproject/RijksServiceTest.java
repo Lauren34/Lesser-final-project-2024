@@ -1,5 +1,6 @@
 package lesser.finalproject;
 
+import lesser.finalproject.json.ArtObject;
 import lesser.finalproject.json.CollectionResponse;
 import com.andrewoid.ApiKey;
 import org.junit.jupiter.api.Test;
@@ -19,7 +20,10 @@ public class RijksServiceTest {
 
         // then
         assertNotNull(response);
-        assertNotNull(response.artObjects[0]);
+        assertNotNull(response.artObjects);
+        assertTrue(response.artObjects.length > 0);
+        ArtObject firstArtObject = response.artObjects[0];
+        assertNotNull(firstArtObject);
     }
 
     @Test
@@ -34,7 +38,10 @@ public class RijksServiceTest {
 
         // then
         assertNotNull(response);
-        assertNotNull(response.artObjects[0]);
+        assertNotNull(response.artObjects);
+        assertTrue(response.artObjects.length > 0);
+        ArtObject firstArtObject = response.artObjects[0];
+        assertNotNull(firstArtObject);
     }
 
     @Test
@@ -49,6 +56,13 @@ public class RijksServiceTest {
 
         // then
         assertNotNull(response);
+        assertNotNull(response.artObjects);
+        assertTrue(response.artObjects.length > 0);
+        ArtObject firstArtObject = response.artObjects[0];
+        assertNotNull(firstArtObject);
+        assertNotNull(firstArtObject.title);
+        assertNotNull(firstArtObject.longTitle);
+        assertNotNull(firstArtObject.principalOrFirstMaker);
     }
 }
 
