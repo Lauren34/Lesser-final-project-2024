@@ -45,7 +45,7 @@ public class RijksServiceTest {
         RijksService service = new RijksServiceFactory().getService();
 
         // when
-        CollectionResponse response = service.searchByArtist("Vermeer", 1, apiKey.get()).blockingGet();
+        CollectionResponse response = service.searchByArtist("Johannes Vermeer", 1, apiKey.get()).blockingGet();
 
         // then
         assertNotNull(response);
