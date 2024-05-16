@@ -1,4 +1,5 @@
 package Lesser.finalproject;
+
 import Lesser.finalproject.Json.CollectionResponse;
 import io.reactivex.rxjava3.core.Single;
 import retrofit2.http.GET;
