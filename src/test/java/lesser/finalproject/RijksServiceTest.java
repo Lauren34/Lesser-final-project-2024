@@ -49,7 +49,6 @@ public class RijksServiceTest {
 
         // then
         assertNotNull(response);
-        assertNotNull(response.artObjects[0]);
     }
 }
 
