@@ -28,13 +28,13 @@ public class RijksSearchFrame extends JFrame {
 
     public RijksSearchFrame() {
         setTitle("Rijksmuseum Art Search");
-        setSize(800, 600);
+        setSize(800, 800);  // Increased height for better viewing
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
         searchField = new JTextField(30);
         searchButton = new JButton("Search");
-        resultsPanel = new JPanel(new GridLayout(0, 2, 10, 10));
+        resultsPanel = new JPanel(new GridBagLayout());  // Use GridBagLayout for better control
         nextPageButton = new JButton("Next Page");
         prevPageButton = new JButton("Previous Page");
         statusLabel = new JLabel(" ");
@@ -44,9 +44,13 @@ public class RijksSearchFrame extends JFrame {
         topPanel.add(searchButton);
 
         JPanel bottomPanel = new JPanel();
-        bottomPanel.add(prevPageButton);
-        bottomPanel.add(nextPageButton);
-        bottomPanel.add(statusLabel);
+        bottomPanel.setLayout(new BorderLayout());
+        JPanel navPanel = new JPanel();
+        navPanel.add(prevPageButton);
+        navPanel.add(nextPageButton);
+
+        bottomPanel.add(navPanel, BorderLayout.CENTER);
+        bottomPanel.add(statusLabel, BorderLayout.SOUTH);
 
         add(topPanel, BorderLayout.NORTH);
         add(new JScrollPane(resultsPanel), BorderLayout.CENTER);
@@ -81,11 +85,18 @@ public class RijksSearchFrame extends JFrame {
         resultsPanel.removeAll();
 
         ArtObject[] artObjects = response.artObjects;
-        for (ArtObject art : artObjects) {
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.anchor = GridBagConstraints.CENTER;
+
+        int displayCount = Math.min(10, artObjects.length);  // Ensure only 10 pictures are shown
+        for (int i = 0; i < displayCount; i++) {
+            ArtObject art = artObjects[i];
             try {
                 URL imageUrl = new URL(art.webImage.url);
                 Image image = ImageIO.read(imageUrl);
-                ImageIcon imageIcon = new ImageIcon(image);
+                Image scaledImage = image.getScaledInstance(200, 200, Image.SCALE_SMOOTH);  // Scale the image
+                ImageIcon imageIcon = new ImageIcon(scaledImage);
                 JLabel label = new JLabel(imageIcon);
                 label.setToolTipText(art.title + " by " + art.principalOrFirstMaker);
 
@@ -96,7 +107,9 @@ public class RijksSearchFrame extends JFrame {
                     }
                 });
 
-                resultsPanel.add(label);
+                gbc.gridx = i % 4;  // 4 columns
+                gbc.gridy = i / 4;  // Increment row after every 4 images
+                resultsPanel.add(label, gbc);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -124,8 +137,8 @@ public class RijksSearchFrame extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new RijksSearchFrame().setVisible(true);
-        });
+
+        new RijksSearchFrame().setVisible(true);
+
     }
 }
