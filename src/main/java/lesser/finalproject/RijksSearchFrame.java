@@ -1,5 +1,6 @@
 package lesser.finalproject;
 
+import hu.akarnokd.rxjava3.swing.SwingSchedulers;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -34,7 +35,7 @@ public class RijksSearchFrame extends JFrame {
 
         searchField = new JTextField(30);
         searchButton = new JButton("Search");
-        resultsPanel = new JPanel(new GridBagLayout());
+        resultsPanel = new JPanel(new GridLayout(0, 4, 10, 10));
         nextPageButton = new JButton("Next Page");
         prevPageButton = new JButton("Previous Page");
         statusLabel = new JLabel(" ");
@@ -77,7 +78,7 @@ public class RijksSearchFrame extends JFrame {
         }
 
         disposable.add(response.subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.trampoline())
+                .observeOn(SwingSchedulers.edt())
                 .subscribe(this::displayResults, this::handleError));
     }
 
@@ -85,10 +86,6 @@ public class RijksSearchFrame extends JFrame {
         resultsPanel.removeAll();
 
         ArtObject[] artObjects = response.artObjects;
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10);
-        gbc.anchor = GridBagConstraints.CENTER;
-
         int displayCount = Math.min(10, artObjects.length);
         for (int i = 0; i < displayCount; i++) {
             ArtObject art = artObjects[i];
@@ -107,9 +104,7 @@ public class RijksSearchFrame extends JFrame {
                     }
                 });
 
-                gbc.gridx = i % 4;
-                gbc.gridy = i / 4;
-                resultsPanel.add(label, gbc);
+                resultsPanel.add(label);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -137,8 +132,6 @@ public class RijksSearchFrame extends JFrame {
     }
 
     public static void main(String[] args) {
-
         new RijksSearchFrame().setVisible(true);
-
     }
 }

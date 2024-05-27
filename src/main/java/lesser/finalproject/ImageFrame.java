@@ -25,7 +25,6 @@ public class ImageFrame extends JFrame {
 
             JLabel label = new JLabel(imageIcon);
             JScrollPane scrollPane = new JScrollPane(label);
-            scrollPane.setPreferredSize(new Dimension(800, 600));
 
             panel.add(scrollPane, BorderLayout.CENTER);
         } catch (IOException e) {
@@ -36,5 +35,3 @@ public class ImageFrame extends JFrame {
         setVisible(true);
     }
 }
-
-
