@@ -28,13 +28,13 @@ public class RijksSearchFrame extends JFrame {
 
     public RijksSearchFrame() {
         setTitle("Rijksmuseum Art Search");
-        setSize(800, 800);  // Increased height for better viewing
+        setSize(800, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
         searchField = new JTextField(30);
         searchButton = new JButton("Search");
-        resultsPanel = new JPanel(new GridBagLayout());  // Use GridBagLayout for better control
+        resultsPanel = new JPanel(new GridBagLayout());
         nextPageButton = new JButton("Next Page");
         prevPageButton = new JButton("Previous Page");
         statusLabel = new JLabel(" ");
@@ -89,13 +89,13 @@ public class RijksSearchFrame extends JFrame {
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.anchor = GridBagConstraints.CENTER;
 
-        int displayCount = Math.min(10, artObjects.length);  // Ensure only 10 pictures are shown
+        int displayCount = Math.min(10, artObjects.length);
         for (int i = 0; i < displayCount; i++) {
             ArtObject art = artObjects[i];
             try {
                 URL imageUrl = new URL(art.webImage.url);
                 Image image = ImageIO.read(imageUrl);
-                Image scaledImage = image.getScaledInstance(200, 200, Image.SCALE_SMOOTH);  // Scale the image
+                Image scaledImage = image.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
                 ImageIcon imageIcon = new ImageIcon(scaledImage);
                 JLabel label = new JLabel(imageIcon);
                 label.setToolTipText(art.title + " by " + art.principalOrFirstMaker);
@@ -107,8 +107,8 @@ public class RijksSearchFrame extends JFrame {
                     }
                 });
 
-                gbc.gridx = i % 4;  // 4 columns
-                gbc.gridy = i / 4;  // Increment row after every 4 images
+                gbc.gridx = i % 4;
+                gbc.gridy = i / 4;
                 resultsPanel.add(label, gbc);
             } catch (IOException e) {
                 e.printStackTrace();
