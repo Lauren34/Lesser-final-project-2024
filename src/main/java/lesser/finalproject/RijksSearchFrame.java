@@ -1,5 +1,6 @@
 package lesser.finalproject;
 
+import com.andrewoid.ApiKey;
 import hu.akarnokd.rxjava3.swing.SwingSchedulers;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -71,10 +72,14 @@ public class RijksSearchFrame extends JFrame {
         String query = searchField.getText();
         Single<CollectionResponse> response;
 
+        ApiKey apiKey = new ApiKey();
+        String keyString = apiKey.get();
+
+
         if (query.isEmpty()) {
-            response = rijksService.pageNumber(currentPage, "1ljDF5e5");
+            response = rijksService.pageNumber(currentPage, apiKey.get());
         } else {
-            response = rijksService.searchCollection(query, currentPage, "1ljDF5e5");
+            response = rijksService.searchCollection(query, currentPage, apiKey.get());
         }
 
         disposable.add(response.subscribeOn(Schedulers.io())
