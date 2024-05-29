@@ -77,9 +77,9 @@ public class RijksSearchFrame extends JFrame {
 
 
         if (query.isEmpty()) {
-            response = rijksService.pageNumber(currentPage, apiKey.get());
+            response = rijksService.pageNumber(currentPage, keyString);
         } else {
-            response = rijksService.searchCollection(query, currentPage, apiKey.get());
+            response = rijksService.searchCollection(query, currentPage, keyString);
         }
 
         disposable.add(response.subscribeOn(Schedulers.io())
